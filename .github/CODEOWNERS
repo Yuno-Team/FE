@@ -1,0 +1,11 @@
+# Update these handles to match your GitHub org/team names
+# Backend (Amplify backend files)
+amplify/**   @Yuno-Team/backend @Yuno-Team/leads
+
+# Frontend (Flutter app code)
+lib/**       @Yuno-Team/frontend @Yuno-Team/leads
+
+# Shared docs
+docs/**      @Yuno-Team/backend @Yuno-Team/frontend
+AGENTS.md    @Yuno-Team/backend @Yuno-Team/frontend
+

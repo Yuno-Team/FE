@@ -1,0 +1,39 @@
+type User @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  email: AWSEmail
+  name: String
+  education: String
+  interests: [Category] @hasMany(indexName: "byUser", fields: ["id"])
+}
+
+type Category @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: ID! @index(name: "byUser", queryField: "categoriesByUser")
+  code: String! # SCHOLARSHIP, GOV, ACTIVITY, RESEARCH, CAMPUS, HOUSING, CAREER
+}
+
+type Policy @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  title: String!
+  category: String!
+  deadline: AWSDateTime
+  popularity: Int
+  tags: [String]
+  summary: String
+}
+
+type Bookmark @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: ID! @index(name: "byUser", queryField: "bookmarksByUser")
+  policyId: ID!
+  createdAt: AWSDateTime
+}
+
+type Interaction @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: ID! @index(name: "byUser", queryField: "interactionsByUser")
+  policyId: ID!
+  event: String! # view/click/apply/etc
+  ts: AWSDateTime!
+}
+
